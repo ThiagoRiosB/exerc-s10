@@ -94,7 +94,6 @@ export default {
           },
           { abortEarly: false }
         )
-
         axios({
           url: 'http://localhost:3000/api/talent',
           method: 'POST',
