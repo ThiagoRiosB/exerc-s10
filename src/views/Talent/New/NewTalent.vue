@@ -78,14 +78,14 @@ export default {
   methods: {
     handleSubmit() {
       try {
-        // montar o schema
+        
         const schema = yup.object().shape({
           name: yup.string().required('O nome é obrigatório').min(10, 'O nome é pequeno demais'),
           email: yup.string().email('Email não inválido').required('Email é obrigatório'),
           area: yup.string().required('A area é obrigatorio')
         })
 
-        // passa os dados para validacao
+        
         schema.validateSync(
           {
             name: this.name,
@@ -115,44 +115,10 @@ export default {
           .catch(() => {
             alert('houve um erro ao cadastrar')
           })
-
-        /*
-
-        fetch('http://localhost:3000/api/talent', {
-          method: 'POST',
-          body: JSON.stringify({
-            name: this.name,
-            email: this.email,
-            date_birth: this.date_birth,
-            phone: this.phone,
-            area: this.area,
-            nivel: this.nivel,
-            skills: this.skills,
-            bio: this.apresentation
-          }),
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          }
-        })
-          .then((response) => {
-            if (response.ok === false) {
-              throw new Error()
-            }
-            return response.json()
-          })
-          .then(() => {
-            alert('CADASTRADO com sucesso')
-          })
-          .catch(() => {
-            alert('houve um erro ao cadastrar')
-          })
-
-          */
-        // .............resto codigo ........
+      
       } catch (error) {
         if (error instanceof yup.ValidationError) {
-          // certeza que foi um erro do yup
+         
           this.errors = captureErrorYup(error)
         }
       }
